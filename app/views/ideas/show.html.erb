@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+<table border="2">
+	<tr>
+		<td><b>Name:</b><td>
+		<td><%= @idea.name %></td>
+	</tr>
+	<tr>
+		<td><b>Date:</b><td>
+		<td><%= @idea.deadline %></td>
+	</tr>
+	<tr>
+		<td><b>Description:<b/><td>
+		<td><%= @idea.description %></td>
+	</tr>
+	<tr>
+		<td><b>Picture:</b><td>
+		<td><%= image_tag(@idea.picture_url, :width => 300) if @idea.picture.present? %></td>
+	</tr>
+	<tr>
+		<td>Comments</td>
+		<td>
+			<% @idea.comments.each do |comment| %>
+			  <div>
+			    <strong><%= comment.user_name %></strong>
+			    <br />
+			    <p><%= comment.body %><p>
+			  </div>
+			<% end %>
+			<%= render 'comments/form' %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= link_to 'Edit', edit_idea_path(@idea) %> |
+			<%= link_to 'Back', ideas_path %>
+		</td>
+	</tr>
+</table>
